@@ -78,12 +78,13 @@ export default function Home() {
       style={{ fontFamily: "sans-serif", color: C.ink, background: C.cream }}
     >
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section
+      {/* <section
         style={{
           position: "relative",
           width: "100%",
           height: "100%",
-          background: "#000",
+          // background: "#000",
+          background: C.forest,
           overflow: "hidden",
         }}
       >
@@ -99,40 +100,36 @@ export default function Home() {
           }}
         />
 
-       
-    {/*}    <div
-          className="hero-cta-wrap"
-          style={{
-            position: "absolute",
-            right: "40px",
-            bottom: "40px",
-            display: "flex",
-            gap: "16px",
-            zIndex: 2,
-            flexWrap: "wrap",
-          }}
-        >
-          <Link
-            to="/products"
-            style={btnPrimary}
-            data-testid="hero-cta-products"
-          >
-            Explore Products <ArrowRight size={16} />
-          </Link>
 
-          <Link to="/dealers" style={btnGhost} data-testid="hero-cta-dealer">
-            Become a Dealer
-          </Link>
-        </div>
-        */}
+       
+      </section> */}
+
+      <section
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "auto",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src={banner}
+          alt="Hero Banner"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+            display: "block",
+          }}
+        />
       </section>
 
-
-      
       <section
         style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 32px" }}
       >
-        <div className="value-header-grid"
+        <div
+          className="value-header-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "7fr 5fr",
