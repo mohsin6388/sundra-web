@@ -95,8 +95,8 @@ export const PRODUCTS = [
     //BarsanaPacketRed
   {
     slug: "barsana-8000",
-    name: "Barsana 8000",
-    nameHi: "बरसाना 8000",
+    name: "Barsana Pashu Aahar",
+    nameHi: "बरसाना पशु आहार",
     tag: "Elite",
     accent: "#8a2a1a",
     image: BarsanaPacketRed,
