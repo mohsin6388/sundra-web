@@ -5,7 +5,6 @@ import { PRODUCTS } from "../lib/products";
 export default function Products() {
   return (
     <main>
-
       {/* HEADER */}
 
       <section
@@ -64,10 +63,9 @@ export default function Products() {
               color: "#666",
             }}
           >
-            From everyday rations to specialised buffalo
-            formulations, every variant of Barsana Pashu
-            Aahar is engineered for a specific yield range
-            and life-stage.
+            From everyday rations to specialised buffalo formulations, every
+            variant of Barsana Pashu Aahar is engineered for a specific yield
+            range and life-stage.
           </p>
         </div>
       </section>
@@ -84,16 +82,13 @@ export default function Products() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "35px",
           }}
+          className="products-grid"
         >
           {PRODUCTS.map((p) => (
-            <ProductCard
-              key={p.slug}
-              product={p}
-            />
+            <ProductCard key={p.slug} product={p} />
           ))}
         </div>
       </section>
@@ -103,6 +98,10 @@ export default function Products() {
           .products-header-grid {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
+          }
+
+          .products-grid{
+          padding: 0 40px !important;
           }
         }
       `}</style>

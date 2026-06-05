@@ -46,6 +46,186 @@ const VALUES = [
 export default function AboutSections() {
   return (
     <>
+      <section
+        style={{
+          background: "#1a2e1e",
+          padding: "200px 200px 30px",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* decorative circles */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-80px",
+            left: "-80px",
+            width: "300px",
+            height: "300px",
+            borderRadius: "50%",
+            border: "60px solid rgba(201,135,31,0.08)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-100px",
+            right: "-80px",
+            width: "360px",
+            height: "360px",
+            borderRadius: "50%",
+            border: "70px solid rgba(255,255,255,0.04)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            maxWidth: "750px",
+            margin: "0 auto",
+          }}
+        >
+          {/* <p
+            style={{
+              color: "#c9871f",
+              letterSpacing: "3px",
+              fontSize: "32px",
+              textTransform: "uppercase",
+              marginBottom: "16px",
+              fontFamily: "sans-serif",
+              fontWeight: "700",
+            }}
+          >
+            Our Mission
+          </p> */}
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "12px",
+              marginBottom: "30px",
+            }}
+          >
+            <span
+              style={{
+                width: "50px",
+                height: "2px",
+                background: "#c9871f",
+                opacity: 0.8,
+              }}
+            />
+
+            <p
+              style={{
+                color: "#c9871f",
+                letterSpacing: "4px",
+                fontSize: "clamp(18px, 2vw, 24px)",
+                textTransform: "uppercase",
+                margin: 0,
+                fontFamily: "sans-serif",
+                fontWeight: "700",
+              }}
+            >
+              Our Mission
+            </p>
+
+            <span
+              style={{
+                width: "50px",
+                height: "2px",
+                background: "#c9871f",
+                opacity: 0.8,
+              }}
+            />
+          </div>
+
+          <h2
+            style={{
+              color: "#fff",
+              fontSize: "clamp(1.8rem, 4vw, 44px)",
+              margin: "0 0 18px",
+              fontFamily: "'Georgia', serif",
+              fontWeight: "600",
+              lineHeight: "1.2",
+            }}
+          >
+            Nourishing Growth with <Gold>Quality Feed Solutions</Gold>
+          </h2>
+
+          <p
+            style={{
+              color: "rgba(255,255,255,0.65)",
+              fontSize: "15px",
+              lineHeight: "1.85",
+              maxWidth: "650px",
+              margin: "0 auto 40px",
+              fontFamily: "sans-serif",
+            }}
+          >
+            At Sundra Group, our mission is to empower farmers with
+            high-quality, nutritious, and reliable cattle feed that supports
+            healthier livestock, improved productivity, and sustainable farming
+            practices. We are committed to delivering excellence through
+            innovation, trust, and long-term partnerships with farming
+            communities.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: "16px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              to="/about"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                background: "#c9871f",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: "700",
+                fontFamily: "sans-serif",
+                fontSize: "15px",
+                boxShadow: "0 8px 28px rgba(201,135,31,0.35)",
+              }}
+            >
+              Learn More <ArrowRight size={17} />
+            </Link>
+
+            <Link
+              to="/products"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                background: "transparent",
+                color: "#fff",
+                textDecoration: "none",
+                padding: "14px 32px",
+                borderRadius: "50px",
+                fontWeight: "600",
+                fontFamily: "sans-serif",
+                fontSize: "15px",
+                border: "1.5px solid rgba(255,255,255,0.3)",
+              }}
+            >
+              Explore Products <ArrowRight size={17} />
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* ════════════════════════════════════════════════
           OUR MISSION  —  image-banner style (like design.jpg)
       ════════════════════════════════════════════════ */}
@@ -95,7 +275,7 @@ export default function AboutSections() {
                   fontWeight: "700",
                   letterSpacing: "3px",
                   textTransform: "uppercase",
-                  fontSize: "12px",
+                  fontSize: "22px",
                   marginBottom: "18px",
                   fontFamily: "sans-serif",
                 }}
@@ -110,7 +290,7 @@ export default function AboutSections() {
                   margin: "0 0 20px",
                   color: "#1a2e1e",
                   fontFamily: "'Georgia', serif",
-                  fontWeight: "800",
+                  fontWeight: "500",
                 }}
               >
                 Empowering dairy farmers with feed that creates{" "}
@@ -208,7 +388,7 @@ export default function AboutSections() {
                   alt="Cattle at Sundra farm"
                   style={{
                     width: "100%",
-                    height: "420px",
+                    height: "auto",
                     objectFit: "cover",
                     borderRadius: "24px",
                     display: "block",
@@ -323,11 +503,11 @@ export default function AboutSections() {
       {/* ════════════════════════════════════════════════
           OUR FACILITY
       ════════════════════════════════════════════════ */}
-      <section
+      {/* <section
         style={{ maxWidth: "1400px", margin: "0 auto",  padding: "50px 30px", }}
       >
         <div className="facility-grid">
-          {/* Left text */}
+         
           <div>
             <p
               style={{
@@ -383,7 +563,7 @@ export default function AboutSections() {
               India's growing demand for premium dairy nutrition.
             </p>
 
-            {/* Specs row */}
+           
             <div
               style={{
                 display: "flex",
@@ -450,7 +630,7 @@ export default function AboutSections() {
             </Link>
           </div>
 
-          {/* Right image */}
+         
           <div style={{ position: "relative" }}>
             <img
               src={GALLERY_IMAGES[0]}
@@ -463,7 +643,7 @@ export default function AboutSections() {
                 display: "block",
               }}
             />
-            {/* corner accent */}
+          
             <div
               style={{
                 position: "absolute",
@@ -479,12 +659,12 @@ export default function AboutSections() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ════════════════════════════════════════════════
           PARTNER WITH SUNDRA GROUP  (CTA)
       ════════════════════════════════════════════════ */}
-      <section
+      {/* <section
         style={{
           background: "#1a2e1e",
           padding: "50px 30px",
@@ -493,7 +673,6 @@ export default function AboutSections() {
           overflow: "hidden",
         }}
       >
-        {/* decorative circles */}
         <div
           style={{
             position: "absolute",
@@ -613,7 +792,7 @@ export default function AboutSections() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ══ RESPONSIVE ══════════════════════════════════ */}
       <style>{`

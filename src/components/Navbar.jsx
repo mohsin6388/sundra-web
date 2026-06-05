@@ -42,9 +42,11 @@ function Navbar() {
   return (
     <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="navbar-container">
-        <Link to="/">
-          <Logo />
-        </Link>
+        <div>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
 
         <nav className="desktop-menu">
           {NAV.map((item) => (
@@ -61,10 +63,7 @@ function Navbar() {
         </nav>
 
         <div className="desktop-actions">
-          <a
-            href={`tel:${COMPANY.phones[0]}`}
-            className="phone-link"
-          >
+          <a href={`tel:${COMPANY.phones[0]}`} className="phone-link">
             <Phone size={16} />
             {COMPANY.phones[0]}
           </a>
@@ -74,10 +73,7 @@ function Navbar() {
           </Link> */}
         </div>
 
-        <button
-          className="mobile-toggle"
-          onClick={() => setOpen(!open)}
-        >
+        <button className="mobile-toggle" onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
@@ -96,10 +92,7 @@ function Navbar() {
             </NavLink>
           ))}
 
-          <a
-            href={`tel:${COMPANY.phones[0]}`}
-            className="mobile-phone"
-          >
+          <a href={`tel:${COMPANY.phones[0]}`} className="mobile-phone">
             <Phone size={16} />
             {COMPANY.phones[0]}
           </a>

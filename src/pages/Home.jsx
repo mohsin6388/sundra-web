@@ -469,12 +469,12 @@ export default function Home() {
                   flexShrink: 0,
                 }}
               >
-                R
+                S
               </div>
               <div>
-                <div style={{ fontWeight: 600 }}>Ramesh Singh</div>
+                <div style={{ fontWeight: 600 }}>Sundra Group</div>
                 <div style={{ fontSize: "0.875rem", color: `${C.ink}99` }}>
-                  Dairy farmer · Kanpur Dehat, U.P.
+                  Kanpur, U.P.
                 </div>
               </div>
             </div>
@@ -541,6 +541,7 @@ export default function Home() {
 
         /* Value props header: stack on mobile */
         @media (max-width: 768px) {
+          
           .value-header-grid {
             grid-template-columns: 1fr !important;
           }
@@ -549,6 +550,7 @@ export default function Home() {
           }
           .featured-products-grid {
             grid-template-columns: 1fr !important;
+            padding: 0 40px;
             gap: 24px !important;
           }
           .science-grid {

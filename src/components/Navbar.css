@@ -30,6 +30,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0;
+ 
 }
 
 @media (max-width: 480px) {
@@ -43,8 +44,10 @@
 .desktop-menu {
   display: flex;
   align-items: center;
+  margin: 0 auto;
   gap: 2px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
+  
 }
 
 .nav-link {
@@ -80,8 +83,8 @@
 .desktop-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-left: auto;
+  /* gap: 16px; */
+  /* margin-left: auto; */
 }
 
 /* Phone link — icon + number, subtle style */
