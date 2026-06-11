@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Droplets, Heart, Sparkles, Wheat, BadgeCheck, MapPin } from "lucide-react";
 import { PRODUCTS, COMPANY, GALLERY_IMAGES } from "../lib/products";
 import ProductCard from "../components/ProductCard";
-import banner from "../assets/Sundra-banner.webp";
+import banner from "../assets/banner-main.webp";
 import farmer from "../assets/products-cat.webp";
 
 // ── Design tokens (inline replacement for CSS variables) ──────────────────────
@@ -71,7 +71,38 @@ const cardSoft = {
   transition:   "transform 0.2s",
 };
 
+
+
+
 export default function Home() {
+
+  const [cur, setCur] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const VISIBLE = isMobile ? 2 : 3;
+  const GAP = isMobile ? 16 : 24;
+  const PADDING = isMobile ? 32 : 64; // total horizontal padding of section
+  const steps = PRODUCTS.length - VISIBLE + 1;
+  const CARD_WIDTH = `calc((min(1216px, 100vw - ${PADDING}px) - ${GAP * (VISIBLE - 1)}px) / ${VISIBLE})`;
+
+  useEffect(() => {
+    setCur(0); // screen resize pe reset
+  }, [isMobile]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCur((c) => (c + 1) % steps);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [steps]);
+
+
   return (
     <main
       data-testid="home-page"
@@ -139,7 +170,7 @@ export default function Home() {
           }}
         >
           <div>
-            <div style={kicker}>Why farmers choose us</div>
+            <div style={kicker}>About US</div>
             <h2
               style={{
                 fontFamily: "Georgia, serif",
@@ -244,7 +275,106 @@ export default function Home() {
       </section>
 
       {/* ── FEATURED PRODUCTS ────────────────────────────────────────────── */}
+
       <section
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: isMobile ? "40px 16px" : "64px 32px",
+        }}
+      >
+        {/* Header */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 16,
+            marginBottom: isMobile ? 24 : 40,
+          }}
+        >
+          <div>
+            <div style={kicker}>The Range</div>
+            <h2
+              style={{
+                fontFamily: "Georgia, serif",
+                fontSize: isMobile ? "1.6rem" : "clamp(2rem, 4vw, 3rem)",
+                color: C.ink,
+                marginTop: 16,
+              }}
+            >
+              Built for every herd, every yield
+            </h2>
+          </div>
+          <Link
+            to="/products"
+            style={btnGhost}
+            data-testid="home-view-all-products"
+          >
+            View all products <ArrowRight size={16} />
+          </Link>
+        </div>
+
+        {/* Slider */}
+        <div
+          style={{
+            overflow: "hidden",
+            padding: isMobile ? "10px 8px" : "10px 40px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: GAP,
+              transition: "transform 0.55s cubic-bezier(.4,0,.2,1)",
+              transform: `translateX(calc(-${cur} * (${CARD_WIDTH} + ${GAP}px)))`,
+            }}
+          >
+            {PRODUCTS.map((p) => (
+              <div
+                key={p.slug}
+                style={{
+                  minWidth: CARD_WIDTH,
+                  maxWidth: CARD_WIDTH,
+                  flexShrink: 0,
+                }}
+              >
+                <ProductCard product={p} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dots */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 8,
+            marginTop: 20,
+          }}
+        >
+          {Array.from({ length: steps }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCur(i)}
+              style={{
+                width: i === cur ? 20 : 8,
+                height: 8,
+                borderRadius: 4,
+                border: "none",
+                cursor: "pointer",
+                background: i === cur ? C.ink : "#ccc",
+                transition: "all 0.3s",
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* <section
         style={{ maxWidth: 1280, margin: "0 auto", padding: "64px 32px" }}
       >
         <div
@@ -290,7 +420,7 @@ export default function Home() {
             <ProductCard key={p.slug} product={p} />
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ── SCIENCE BAND ─────────────────────────────────────────────────── */}
       <section style={{ background: C.forest, color: C.cream, marginTop: 40 }}>
