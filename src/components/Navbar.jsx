@@ -18,7 +18,7 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ];
 
-function Navbar() {
+function Navbar({ lang, setLang }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -72,6 +72,13 @@ function Navbar() {
             Become a Dealer
           </Link> */}
         </div>
+
+        <button
+          style={{ background: "#2D6A3E", padding: "5px 10px", marginLeft: "50px", borderRadius: "10px", fontWeight: 500, color: "white", fontSize: "15px" }}
+          onClick={() => setLang(lang === "hi" ? "en" : "hi")}
+        >
+          {lang === "hi" ? "EN" : "HI"}
+        </button>
 
         <button className="mobile-toggle" onClick={() => setOpen(!open)}>
           {open ? <X size={22} /> : <Menu size={22} />}

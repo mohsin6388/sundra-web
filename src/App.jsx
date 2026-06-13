@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
 import Navbar from "./components/Navbar";
@@ -63,41 +63,50 @@ class ErrorBoundary extends React.Component {
 }
 
 function App() {
+
+  const [lang, setLang] = useState("hi");
+
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <div className="App font-sans antialiased">
           <ScrollToTop />
-          <Navbar />
+          <Navbar lang={lang} setLang={setLang} />
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:slug" element={<ProductDetail />} />
-              <Route path="/benefits" element={<Benefits />} />
-              <Route path="/dealers" element={<Dealers />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route
+                path="/"
+                element={<Home lang={lang} setLang={setLang} />}
+              />
+              <Route path="/about" element={<About lang={lang} />} />
+              <Route path="/products" element={<Products lang={lang} />} />
+              <Route
+                path="/products/:slug"
+                element={<ProductDetail lang={lang} />}
+              />
+              <Route path="/benefits" element={<Benefits lang={lang} />} />
+              <Route path="/dealers" element={<Dealers lang={lang} />} />
+              <Route path="/gallery" element={<Gallery lang={lang} />} />
+              <Route path="/contact" element={<Contact lang={lang} />} />
             </Routes>
           </Suspense>
           <Footer />
-          <Toaster 
+          <Toaster
             position="top-right"
             toastOptions={{
               style: {
-                background: '#1f2937',
-                color: '#ffffff',
-                border: 'none',
+                background: "#1f2937",
+                color: "#ffffff",
+                border: "none",
               },
               success: {
                 style: {
-                  background: '#10b981',
+                  background: "#10b981",
                 },
               },
               error: {
                 style: {
-                  background: '#ef4444',
+                  background: "#ef4444",
                 },
               },
             }}
