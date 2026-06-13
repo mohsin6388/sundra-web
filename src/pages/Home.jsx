@@ -1,10 +1,16 @@
-import React, {useState, useEffect}  from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Droplets, Heart, Sparkles, Wheat, BadgeCheck, MapPin } from "lucide-react";
 import { PRODUCTS, COMPANY, GALLERY_IMAGES } from "../lib/products";
 import ProductCard from "../components/ProductCard";
-import banner from "../assets/banner-main.webp";
+import banner1 from "../assets/banner-main.webp";
+import banner2 from "../assets/Sundra-banner.webp";
 import farmer from "../assets/products-cat.webp";
+
+
+const banners = [banner1, banner2, banner1, banner2];
+
+const slides = [...banners, banners[0]];
 
 // ── Design tokens (inline replacement for CSS variables) ──────────────────────
 const C = {
@@ -72,9 +78,44 @@ const cardSoft = {
 };
 
 
+const stats = [
+  { num: "50,000+", label: "Kisan parivaar" },
+  { num: "22%", label: "Zyada doodh" },
+  { num: "12+", label: "Saal ka anubhav" },
+  { num: "200+", label: "Dealers all India" },
+];
+
+
 
 
 export default function Home() {
+
+   const [current, setCurrent] = useState(0);
+   const [isTransitioning, setIsTransitioning] = useState(true);
+   const intervalRef = useRef(null);
+   
+
+   useEffect(() => {
+     intervalRef.current = setInterval(() => {
+       setCurrent((prev) => prev + 1);
+     }, 3000);
+     return () => clearInterval(intervalRef.current);
+   }, []);
+
+   useEffect(() => {
+     // Jab clone (last) pe pahunche — silently reset to real first
+     if (current === slides.length - 1) {
+       setTimeout(() => {
+         setIsTransitioning(false); // transition band karo
+         setCurrent(0); // silently pehle pe jao
+       }, 600); // transition duration ke baad
+     } else {
+       setIsTransitioning(true); // baaki sab pe transition on
+     }
+   }, [current]);
+
+
+
 
   const [cur, setCur] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -109,33 +150,39 @@ export default function Home() {
       style={{ fontFamily: "sans-serif", color: C.ink, background: C.cream }}
     >
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      {/* <section
+
+      <section
         style={{
           position: "relative",
           width: "100%",
-          height: "100%",
-          // background: "#000",
-          background: C.forest,
           overflow: "hidden",
         }}
       >
-        <img
-          src={banner}
-          alt="Hero Banner"
+        <div
           style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            display: "block",
+            display: "flex",
+            width: `${slides.length * 100}%`,
+            transform: `translateX(-${(current * 100) / slides.length}%)`,
+            transition: isTransitioning ? "transform 0.6s ease-in-out" : "none",
           }}
-        />
+        >
+          {slides.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`Banner ${i + 1}`}
+              style={{
+                width: `${100 / slides.length}%`,
+                display: "block",
+                objectFit: "cover",
+                objectPosition: "center center",
+              }}
+            />
+          ))}
+        </div>
+      </section>
 
-
-       
-      </section> */}
-
-      <section
+      {/* <section
         style={{
           position: "relative",
           width: "100%",
@@ -154,10 +201,114 @@ export default function Home() {
             display: "block",
           }}
         />
-      </section>
+      </section> */}
 
       <section
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 32px" }}
+        style={{
+          padding: "64px 2px",
+          maxWidth: "960px",
+          margin: "0 auto",
+          fontFamily: "'Inter', sans-serif",
+        }}
+      >
+        {/* Tag */}
+        <p
+          style={{
+            fontSize: "12px",
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            color: C.gold,
+            fontWeight: 500,
+            marginBottom: "16px",
+          }}
+        >
+          Trusted by thousands
+        </p>
+
+        {/* Heading */}
+        <h2
+          style={{
+            fontSize: "clamp(28px, 4vw, 42px)",
+            fontWeight: 500,
+            color: "#111",
+            lineHeight: 1.25,
+            marginBottom: "16px",
+          }}
+        >
+          Pashu ka doodh badhe,
+          <br />
+          kisan ki <span style={{ color: "#2D6A3E" }}>aamdani bhi</span>
+        </h2>
+
+        {/* Subtext */}
+        <p
+          style={{
+            fontSize: "15px",
+            color: "#666",
+            lineHeight: 1.7,
+            maxWidth: "480px",
+            marginBottom: "48px",
+          }}
+        >
+          Barsana Pashu Aahar — scientifically formulated cattle feed jo aapke
+          pashu ko rakhta hai healthy aur deta hai maximum milk yield.
+        </p>
+
+        {/* Divider */}
+        <div
+          style={{
+            borderTop: "1px solid #e5e5e5",
+            marginBottom: "40px",
+          }}
+        />
+
+        {/* Stats */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "48px",
+            flexWrap: "wrap",
+          }}
+        >
+          {stats.map((s, i) => (
+            <div key={i}>
+              <div
+                style={{
+                  fontSize: "clamp(32px, 4vw, 44px)",
+                  fontWeight: 500,
+                  color: "#2D6A3E",
+                  lineHeight: 1,
+                }}
+              >
+                {s.num}
+              </div>
+              <div
+                style={{
+                  fontSize: "13px",
+                  color: "#888",
+                  marginTop: "6px",
+                }}
+              >
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div
+        style={{
+          borderTop: "1px solid #e5e5e5",
+          marginBottom: "30px",
+          marginTop: "20px",
+          marginLeft: "80px",
+          marginRight: "80px",
+        }}
+      />
+
+      <section
+        style={{ maxWidth: 1180, margin: "0 auto", padding: "70px 32px" }}
       >
         <div
           className="value-header-grid"
@@ -274,11 +425,21 @@ export default function Home() {
         </div>
       </section>
 
+      <div
+        style={{
+          borderTop: "1px solid #e5e5e5",
+          marginBottom: "30px",
+          marginTop: "20px",
+          marginLeft: "80px",
+          marginRight: "80px",
+        }}
+      />
+
       {/* ── FEATURED PRODUCTS ────────────────────────────────────────────── */}
 
       <section
         style={{
-          maxWidth: 1280,
+          maxWidth: 1180,
           margin: "0 auto",
           padding: isMobile ? "40px 16px" : "64px 32px",
         }}
@@ -374,60 +535,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <section
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "64px 32px" }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 16,
-            marginBottom: 40,
-          }}
-        >
-          <div>
-            <div style={kicker}>The Range</div>
-            <h2
-              style={{
-                fontFamily: "Georgia, serif",
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                color: C.ink,
-                marginTop: 16,
-              }}
-            >
-              Built for every herd, every yield
-            </h2>
-          </div>
-          <Link
-            to="/products"
-            style={btnGhost}
-            data-testid="home-view-all-products"
-          >
-            View all products <ArrowRight size={16} />
-          </Link>
-        </div>
-        <div
-          className="featured-products-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 44,
-          }}
-        >
-          {PRODUCTS.slice(0, 3).map((p) => (
-            <ProductCard key={p.slug} product={p} />
-          ))}
-        </div>
-      </section> */}
 
       {/* ── SCIENCE BAND ─────────────────────────────────────────────────── */}
       <section style={{ background: C.forest, color: C.cream, marginTop: 40 }}>
         <div
           className="science-grid"
           style={{
-            maxWidth: 1280,
+            maxWidth: 1180,
             margin: "0 auto",
             padding: "80px 32px",
             display: "grid",
@@ -520,7 +634,7 @@ export default function Home() {
 
       {/* ── TESTIMONIAL ──────────────────────────────────────────────────── */}
       <section
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "96px 32px" }}
+        style={{ maxWidth: 1180, margin: "0 auto", padding: "96px 32px" }}
       >
         <div
           className="testimonial-grid"
@@ -611,7 +725,7 @@ export default function Home() {
 
       {/* ── CTA BAND ─────────────────────────────────────────────────────── */}
       <section
-        style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px 80px" }}
+        style={{ maxWidth: 1180, margin: "80px auto", padding: "0 32px 80px" }}
       >
         <div
           className="cta-band-grid"

@@ -37,16 +37,16 @@ const VALUES = [
     title: "Sustainable Sourcing",
     desc: "We partner directly with verified agri-suppliers to ensure raw materials are traceable, responsibly grown, and free from harmful additives.",
   },
-  {
-    Icon: ShieldCheck,
-    title: "Uncompromising Quality",
-    desc: "ISO 9001:2015 certified processes govern every step — from procurement to packaging — so farmers always receive a consistent, safe product.",
-  },
-  {
-    Icon: HeartHandshake,
-    title: "Farmer Partnership",
-    desc: "Our agronomists provide on-ground training and support, helping more than 10,000 farmers across India unlock their herds' full potential.",
-  },
+  // {
+  //   Icon: ShieldCheck,
+  //   title: "Uncompromising Quality",
+  //   desc: "ISO 9001:2015 certified processes govern every step — from procurement to packaging — so farmers always receive a consistent, safe product.",
+  // },
+  // {
+  //   Icon: HeartHandshake,
+  //   title: "Farmer Partnership",
+  //   desc: "Our agronomists provide on-ground training and support, helping more than 10,000 farmers across India unlock their herds' full potential.",
+  // },
 ];
 
 const STATS = [
@@ -236,6 +236,7 @@ export default function AboutSections() {
 
         /* ── Mission section ── */
         .mission-section {
+        fontFamily: "'Inter', sans-serif",
           background: #f5f0e8;
           padding: 90px 30px;
           position: relative;
@@ -318,7 +319,7 @@ export default function AboutSections() {
           margin-bottom: 14px;
         }
         .section-title {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Inter', serif;
           font-size: clamp(1.8rem, 4vw, 44px);
           color: #1a2e1e;
           font-weight: 800;
@@ -691,7 +692,7 @@ export default function AboutSections() {
         {/* ═══ HERO BANNER ═══════════════════════════════════ */}
         <section className="hero-banner">
           <div
-            style={{ 
+            style={{
               position: "relative",
               maxWidth: "800px",
               margin: "0 auto",
@@ -742,7 +743,7 @@ export default function AboutSections() {
               <div>
                 <p className="section-tag">Our Mission</p>
                 <h2 className="section-title">
-                  Empowering dairy farmers with feed that creates{" "}
+                  Empowering dairy farmers with feed that creates <br />
                   <Gold>real economic prosperity</Gold>
                 </h2>
                 <p
@@ -765,11 +766,10 @@ export default function AboutSections() {
                     margin: "0",
                   }}
                 >
-                  From the Gangetic plains to the Terai belt of Sundra
-                  Group's nutritionists work directly with farmers to design
-                  feed programs that match breed, climate, and herd size —
-                  delivering measurable improvements in milk output and animal
-                  longevity.
+                  From the Gangetic plains to the Terai belt of Sundra Group's
+                  nutritionists work directly with farmers to design feed
+                  programs that match breed, climate, and herd size — delivering
+                  measurable improvements in milk output and animal longevity.
                 </p>
                 <div className="values-mini-grid">
                   {VALUES.map(({ Icon, title, desc }) => (
@@ -888,7 +888,10 @@ export default function AboutSections() {
           <div className="section-inner">
             <div className="section-header">
               <p className="section-tag">Our Journey</p>
-              <h2 className="section-title">25 years of growth & innovation</h2>
+              <h2 className="section-title">
+                25 years of <span style={{ color: "#2D6A3E" }}>growth</span> &
+                innovation
+              </h2>
               <p className="section-desc">
                 From a single plant in Uttar Pradesh to a pan-India operation —
                 here are the milestones that shaped Sundra Group.

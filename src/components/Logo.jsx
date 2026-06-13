@@ -1,6 +1,6 @@
 import React from "react";
 //import logo from "../assets/sundra-logo-start.png"
-import logo from "../assets/sundra-logo-removebg-preview.png";
+import logo from "../assets/new-logo.png";
 import "./Logo.css";
 
 function Logo({ size = 44 }) {
